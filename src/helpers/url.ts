@@ -1,4 +1,4 @@
-import { isDate, isObject } from './util'
+import { isDate, isPlainObject } from './util'
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -11,7 +11,7 @@ function encode(val: string): string {
     .replace(/%5D/gi, ']')
 }
 
-export function bulidURL(url: string, params?: any): string {
+export function buildURL(url: string, params?: any): string {
   if (!params) {
     return url
   }
@@ -19,11 +19,11 @@ export function bulidURL(url: string, params?: any): string {
   const parts: string[] = []
 
   Object.keys(params).forEach(key => {
-    let val = params[key]
+    const val = params[key]
     if (val === null || typeof val === 'undefined') {
       return
     }
-    let values: string[]
+    let values = []
     if (Array.isArray(val)) {
       values = val
       key += '[]'
@@ -33,7 +33,7 @@ export function bulidURL(url: string, params?: any): string {
     values.forEach(val => {
       if (isDate(val)) {
         val = val.toISOString()
-      } else if (isObject(val)) {
+      } else if (isPlainObject(val)) {
         val = JSON.stringify(val)
       }
       parts.push(`${encode(key)}=${encode(val)}`)
