@@ -94,6 +94,8 @@ axios({
   method: 'post',
   url: '/base/post',
   data: searchParams
+}).then((res) => {
+  console.log(res)
 })
 
 const arr = new Int32Array([21, 31])
