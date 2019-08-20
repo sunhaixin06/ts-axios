@@ -104,4 +104,6 @@ axios({
   method: 'post',
   url: '/base/buffer',
   data: arr
+}).then((res) => {
+  console.log(res)
 })
