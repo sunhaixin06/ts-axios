@@ -68,11 +68,14 @@ axios({
     a: 1,
     b: 2
   }
+}).then((res) => {
+  console.log(res)
 })
 
 axios({
   method: 'post',
   url: '/base/post',
+  responseType: 'json',
   headers: {
     'content-type': 'application/json;'
   },
@@ -80,6 +83,8 @@ axios({
     a: 1,
     b: 2
   }
+}).then((res) => {
+  console.log(res)
 })
 
 const paramsString = 'q=URLUtils.searchParams&topic=api'
